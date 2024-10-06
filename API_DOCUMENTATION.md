@@ -7,7 +7,7 @@ This document outlines the endpoints and usage of the Job Board API.
 All URLs referenced in the documentation have the following base:
 
 ```
-http://localhost:3000/api
+http://localhost:3000/api/
 ```
 
 ## Authentication
@@ -87,9 +87,23 @@ Authorization: Bearer YOUR_JWT_TOKEN
 - **URL**: `/jobs`
 - **Method**: `GET`
 - **Auth required**: No
+- **Query Parameters**:
+  - `page` (optional): Page number (default: 1)
+  - `limit` (optional): Number of items per page (default: 10)
 - **Success Response**:
   - **Code**: 200
-  - **Content**: `[{ "id": 1, "title": "Software Engineer", ... }, ...]`
+  - **Content**:
+    ```json
+    {
+      "jobs": [{ "id": 1, "title": "Software Engineer", ... }, ...],
+      "metadata": {
+        "currentPage": 1,
+        "totalPages": 5,
+        "totalJobs": 48,
+        "limit": 10
+      }
+    }
+    ```
 
 #### Get a Specific Job
 
