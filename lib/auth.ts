@@ -13,7 +13,7 @@ export function verifyToken(request: NextRequest) {
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
     return decoded as { userId: number; email: string };
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Invalid token" }, { status: 401 });
   }
 }
